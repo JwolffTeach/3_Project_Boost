@@ -20,12 +20,35 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ProcessInput();
-	}
-
-    private void ProcessInput() {
         Thrust();
         Rotate();
+    }
+
+    void OnCollisionEnter(Collision collision) {
+        switch (collision.gameObject.tag) {
+            case "Friendly":
+                print("Ok"); // todo remove
+                break;
+            case "Fuel":
+                print("Picked up fuel."); // todo remove
+                break;
+            default:
+                print("Dead");
+                break;
+
+        }
+    }
+
+    private void Thrust() {
+        if (Input.GetKey(KeyCode.Space)) { // can thrust while rotating
+            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+            if (!audioSource.isPlaying) { // so it doesn't layer
+                audioSource.Play();
+            }
+        }
+        else {
+            audioSource.Stop();
+        }
     }
 
     private void Rotate() {
@@ -40,17 +63,5 @@ public class Rocket : MonoBehaviour {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
         rigidBody.freezeRotation = false;
-    }
-
-    private void Thrust() {
-        if (Input.GetKey(KeyCode.Space)) { // can thrust while rotating
-            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-            if (!audioSource.isPlaying) { // so it doesn't layer
-                audioSource.Play();
-            }
-        }
-        else {
-            audioSource.Stop();
-        }
     }
 }
