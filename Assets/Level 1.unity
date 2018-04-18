@@ -511,8 +511,8 @@ Transform:
   - {fileID: 131074321}
   - {fileID: 29081123}
   - {fileID: 1843866598}
-  - {fileID: 1427817250}
   - {fileID: 1422906217}
+  - {fileID: 1427817250}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -793,7 +793,7 @@ Transform:
   m_LocalScale: {x: 4, y: 18, z: 4}
   m_Children: []
   m_Father: {fileID: 688824222}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1518308353 stripped
 Transform:
