@@ -77,11 +77,18 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
         deathParticles.Play();
-        Invoke("LoadFirstLevel", levelLoadDelay);
+        Invoke("LoadNextLevel", levelLoadDelay);
     }
 
     private void LoadNextLevel() {
-        SceneManager.LoadScene(1); // todo allow for more than 2 levels
+        print("Num Scenes: " + SceneManager.sceneCountInBuildSettings);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings) {
+            nextSceneIndex = 0;
+        }
+        print(currentSceneIndex + " " + nextSceneIndex);
+        SceneManager.LoadScene(nextSceneIndex); // todo allow for more than 2 levels
     }
 
     private void LoadFirstLevel() {
