@@ -76,7 +76,7 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(deathSound);
         deathParticles.Play();
-        Invoke("LoadFirstLevel", levelLoadDelay);
+        Invoke("LoadSameLevel", levelLoadDelay);
     }
 
     private void LoadNextLevel() {
@@ -90,6 +90,11 @@ public class Rocket : MonoBehaviour {
 
     private void LoadFirstLevel() {
         SceneManager.LoadScene(0);
+    }
+
+    private void LoadSameLevel() {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
 
